@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  background-color: grey;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.footer {
+  .row {
+    .col-12 {
+      text-align: center;
+
+      p {
+        margin: 0;
+      }
+
+      h4 {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.main {
+  .col-md-3 {
+    margin-bottom: 1rem;
+    padding-right: 0;
+
+    .card {
+      padding: 0.75rem;
+
+      img {
+        width: 17.25rem;
+        background-color: grey;
+      }
+
+      .card-title {
+        font-weight: 900;
+        color: rgb(62, 62, 197);
+      }
+
+      .ele_data {
+        color: rgb(62, 62, 197);
+      }
+
+      .card-subtitle {
+        padding-bottom: 0.75rem;
+
+        li {
+          color: rgb(62, 62, 197);
+        }
+
+        .ele_label {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+.filter {
+  background-color: white !important;
+  padding: 1rem;
+
+  h6 {
+    color: grey !important;
+  }
+
+  .year_button {
+    padding: 0.25rem;
+    background-color: rgb(158, 172, 130);
+    margin: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    &:hover {
+      background-color: green!important;
+    }
+    &:active {
+      background-color: green!important;
+    }
+    
+  }
+}
