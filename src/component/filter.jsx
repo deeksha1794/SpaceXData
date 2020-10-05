@@ -1,18 +1,37 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
+import PropTypes from 'prop-types';
 
 
 export default class Filter extends React.Component {
+    constructor (props) {
+        super(props);
+    }
 
-    render() {
+    yearArrMap = () => {
+        return this.props.yearArr && this.props.yearArr.length &&
+            this.props.yearArr.map((ele, index) => (
+                <Col xs={5} key={index} className={"year_button"}
+                    onClick={(e) => this.props.onClickHandler(e, "launch_year", ele)}>
+                    {ele}
+                </Col>));
+    }
+
+    filterTitle = (title) => {
+        return (
+            <Col xs={12}>
+                <h6>{title}</h6>
+                <hr />
+            </Col>
+        );
+    }
+
+    render () {
         return (
             <div className="filter">
                 <h4>Filters</h4>
                 <Row>
-                    <Col xs={12}>
-                        <h6>Launch Year</h6>
-                        <hr />
-                    </Col>
+                    {this.filterTitle("Launch Year")}
                     <Col xs={12}>
                         <Row>
                             {this.yearArrMap()}
@@ -20,46 +39,41 @@ export default class Filter extends React.Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12}>
-                        <h6>Successful Launch</h6>
-                        <hr />
-                    </Col>
+                    {this.filterTitle("Successful Launch")}
                     <Col xs={12}>
                         <Row>
-                            <Col xs={5} className={"year_button"} onClick={(e) => this.props.onClickHandler(e, "launch", true)}>
+                            <Col xs={5} className={"year_button"}
+                                onClick={(e) => this.props.onClickHandler(e, "launch_success", true)}>
                                 True
-                             </Col>
-                            <Col xs={5} className={"year_button"} onClick={(e) => this.props.onClickHandler(e, "launch", false)}>
+                            </Col>
+                            <Col xs={5} className={"year_button"}
+                                onClick={(e) => this.props.onClickHandler(e, "launch_success", false)}>
                                 False
-                             </Col>
+                            </Col>
                         </Row>
                     </Col>
                 </Row>
                 <Row>
-                    <Col xs={12}>
-                        <h6>Successful Landing</h6>
-                        <hr />
-                    </Col>
+                    {this.filterTitle("Successful Landing")}
                     <Col xs={12}>
                         <Row>
-                            <Col xs={5} className={"year_button"} onClick={(e) => this.props.onClickHandler(e, "landing", true)}>
+                            <Col xs={5} className={"year_button"}
+                                onClick={(e) => this.props.onClickHandler(e, "land_success", true)}>
                                 True
-                             </Col>
-                            <Col xs={5} className={"year_button"} onClick={(e) => this.props.onClickHandler(e, "landing", false)}>
+                            </Col>
+                            <Col xs={5} className={"year_button"}
+                                onClick={(e) => this.props.onClickHandler(e, "land_success", false)}>
                                 False
-                             </Col>
+                            </Col>
                         </Row>
                     </Col>
                 </Row>
             </div>
-        )
+        );
     }
-    yearArrMap = () => {
-        return this.props.yearArr && this.props.yearArr.length &&
-            this.props.yearArr.map((ele, index) =>
-                <Col xs={5} key={index} className={"year_button"} onClick={(e) => this.props.onClickHandler(e, "year", ele)}>
-                    {ele}
-                </Col>)
-    }
-
 }
+
+Filter.propTypes = {
+    yearArr: PropTypes.array,
+    onClickHandler: PropTypes.func
+};

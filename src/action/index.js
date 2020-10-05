@@ -5,7 +5,7 @@ export const getSpaceX = {
             payload: {
                 spaceXData
             }
-        }
+        };
     },
     success: (spaces) => {
         return {
@@ -13,7 +13,7 @@ export const getSpaceX = {
             payload: {
                 spaces
             }
-        }
+        };
     },
     failure: (error) => {
         return {
@@ -21,6 +21,6 @@ export const getSpaceX = {
             payload: {
                 error
             }
-        }
+        };
     }
 };

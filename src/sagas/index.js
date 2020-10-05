@@ -8,42 +8,33 @@ import {
     getSpaceX
 } from '../action';
 
-function* fetchSpaceX(
+export function *fetchSpaceX (
     spaceXdata
 ) {
     try {
         let json;
-        let serviceUrl = encodeURI(`https://api.spaceXdata.com/v3/launches?limit=100`);
-        if (spaceXdata.payload.spaceXData) {
-            switch(spaceXdata.payload.spaceXData.key){
-                case "year":
-                    serviceUrl = serviceUrl + encodeURI(`&launch_year=${spaceXdata.payload.spaceXData.filter}`);
-                    break;
-                case "landing":
-                    serviceUrl = serviceUrl + encodeURI(`&land_success=${spaceXdata.payload.spaceXData.filter}`);
-                    break;
-                case "launch":
-                    serviceUrl = serviceUrl + encodeURI(`&launch_success=${spaceXdata.payload.spaceXData.filter}`);
-                    break;
-                default:
-                    break;
-            }
+        let serviceUrl = encodeURI(`https://api.spaceXdata.com/v3/launches?limit=100&`);
+        if (spaceXdata.payload.spaceXData && spaceXdata.payload.spaceXData.length) {
+            const filterValues = [];
+            spaceXdata.payload.spaceXData.forEach((filter) => {
+                filterValues.push("&" + filter.id + "=" + filter.value);
+            });
+            serviceUrl = serviceUrl + encodeURI(filterValues.join("&"));
         }
         json = yield fetch(serviceUrl)
-        .then(response => response.json());
+            .then(response => response.json());
 
-        console.log(json)
         yield put(getSpaceX.success(json));
     } catch (err) {
         yield put(getSpaceX.failure(err));
     }
 }
 
-function* actionWatcher() {
+function *actionWatcher () {
     yield takeLatest('GET_SPACEX.REQUEST', fetchSpaceX);
 }
-export default function* rootSaga() {
+export default function *rootSaga () {
     yield all([
-        fork(actionWatcher),
+        fork(actionWatcher)
     ]);
 }
