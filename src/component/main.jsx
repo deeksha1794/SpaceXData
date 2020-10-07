@@ -9,23 +9,12 @@ import {
 } from 'reactstrap';
 
 export default class Main extends React.Component {
-
-    constructor(props){
+    constructor (props) {
         super(props);
     }
 
-    render() {
-        return (
-            <Row className="main">
-                {this.props.spaces &&
-                    this.spacesXMap()
-                }
-            </Row>
-        )
-    }
-
     spacesXMap = () => (this.props.spaces && this.props.spaces.length && this.props.spaces.map((ele, index) =>
-        <Col key={index} md={3}>
+        (<Col key={index} md={3}>
             <Card>
                 <CardImg top src={ele.links.mission_patch_small} alt="SpaceX" />
                 <CardBody>
@@ -62,6 +51,16 @@ export default class Main extends React.Component {
                     </CardSubtitle>
                 </CardBody>
             </Card>
-        </Col>)
+        </Col>))
     )
+
+    render () {
+        return (
+            <Row className="main">
+                {this.props.spaces &&
+                    this.spacesXMap()
+                }
+            </Row>
+        );
+    }
 }

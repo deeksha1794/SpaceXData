@@ -8,7 +8,7 @@ import {
     getSpaceX
 } from '../action';
 
-export function *fetchSpaceX (
+export function* fetchSpaceX (
     spaceXdata
 ) {
     try {
@@ -30,10 +30,10 @@ export function *fetchSpaceX (
     }
 }
 
-function *actionWatcher () {
+function* actionWatcher () {
     yield takeLatest('GET_SPACEX.REQUEST', fetchSpaceX);
 }
-export default function *rootSaga () {
+export default function* rootSaga () {
     yield all([
         fork(actionWatcher)
     ]);

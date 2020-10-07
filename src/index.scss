@@ -83,12 +83,14 @@ code {
     text-align: center;
     color: black;
     cursor: pointer;
+
     &:hover {
-      background-color: green!important;
+      background-color: green !important;
     }
-    &:active {
-      background-color: green!important;
+
+    &:focus {
+      background-color: green !important;
     }
-    
+
   }
 }

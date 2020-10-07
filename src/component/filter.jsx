@@ -11,7 +11,7 @@ export default class Filter extends React.Component {
     yearArrMap = () => {
         return this.props.yearArr && this.props.yearArr.length &&
             this.props.yearArr.map((ele, index) => (
-                <Col xs={5} key={index} className={"year_button"}
+                <Col xs={5} key={index} className={"year_button"} tabIndex={index}
                     onClick={(e) => this.props.onClickHandler(e, "launch_year", ele)}>
                     {ele}
                 </Col>));
@@ -42,11 +42,11 @@ export default class Filter extends React.Component {
                     {this.filterTitle("Successful Launch")}
                     <Col xs={12}>
                         <Row>
-                            <Col xs={5} className={"year_button"}
+                            <Col xs={5} className={"year_button"} tabIndex="1"
                                 onClick={(e) => this.props.onClickHandler(e, "launch_success", true)}>
                                 True
                             </Col>
-                            <Col xs={5} className={"year_button"}
+                            <Col xs={5} className={"year_button"} tabIndex="2"
                                 onClick={(e) => this.props.onClickHandler(e, "launch_success", false)}>
                                 False
                             </Col>
@@ -57,11 +57,11 @@ export default class Filter extends React.Component {
                     {this.filterTitle("Successful Landing")}
                     <Col xs={12}>
                         <Row>
-                            <Col xs={5} className={"year_button"}
+                            <Col xs={5} className={"year_button"} tabIndex="1"
                                 onClick={(e) => this.props.onClickHandler(e, "land_success", true)}>
                                 True
                             </Col>
-                            <Col xs={5} className={"year_button"}
+                            <Col xs={5} className={"year_button"} tabIndex="2"
                                 onClick={(e) => this.props.onClickHandler(e, "land_success", false)}>
                                 False
                             </Col>

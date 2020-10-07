@@ -25,13 +25,15 @@ class App extends React.Component {
 
 
     onClickHandler = (event, key, filter) => {
-        let spaceX;
-        spaceX = { id: key, value: filter };
-        this.setState({
-            spaceXData: [...this.state.spaceXData, spaceX]
-        }, () => {
-            return this.props.getSpaceX(this.state.spaceXData);
-        });
+        if (this.state.spaceXData && this.state.spaceXData.length) {
+            const spaceX = this.state.spaceXData.filter((i) => i.id !== key);
+            this.setState({ spaceXData: [...spaceX, { id: key, value: filter }]
+            }, () => this.props.getSpaceX(this.state.spaceXData));
+        } else {
+            this.setState({
+                spaceXData: [...this.state.spaceXData, { id: key, value: filter }]
+            }, () => this.props.getSpaceX(this.state.spaceXData));
+        }
     }
 
     render () {
